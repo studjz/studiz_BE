@@ -31,4 +31,7 @@ public class Problem {
 
     @Column(nullable = false)
     private String answerFour;
+
+    @Column(nullable = false)
+    private String correctAnswer;
 }

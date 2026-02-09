@@ -10,5 +10,6 @@ public class CreateProblemRequset {
     private String answerOne;
     private String answerTwo;
     private String answerThree;
-    private String answerFour;;
+    private String answerFour;
+    private String correctAnswer;
 }

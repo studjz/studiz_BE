@@ -3,7 +3,7 @@ package com.example.studiz.domain.problem.service;
 import com.example.studiz.domain.problem.Problem;
 import com.example.studiz.domain.problem.presentation.dto.request.CreateProblemRequset;
 import com.example.studiz.domain.problem.repository.ProblemRepository;
-import jakarta.transaction.Transactional;
+import org.springframework.transaction.annotation.Transactional; // 이걸로 바꿔주세요!
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
@@ -22,10 +22,24 @@ public class ProblemService {
                 .answerTwo(createProblemRequset.getAnswerTwo())
                 .answerThree(createProblemRequset.getAnswerThree())
                 .answerFour(createProblemRequset.getAnswerFour())
+                .correctAnswer(createProblemRequset.getCorrectAnswer())
                 .build();
         Problem savedProblem = problemRepository.save(problem);
 
         return ResponseEntity.ok(savedProblem);
 
+    }
+
+    public Problem getProblemById(Long id) {
+        return problemRepository.findById(id)
+                .orElseThrow(() -> new IllegalArgumentException("문제를 찾을수 없습니다"));
+    }
+
+    @Transactional(readOnly = true)
+    public boolean checkAnswer(Long id, String userAnswer){
+        Problem problem = problemRepository.findById(id)
+                .orElseThrow(() -> new IllegalArgumentException("문제를 찾을 수 없습니다."));
+
+        return problem.getCorrectAnswer().trim().equals(userAnswer.trim());
     }
 }
