@@ -1,1 +1,24 @@
-spring.application.name=studiz
+jwt:
+  secret: "${JWT_SECRET_KEY:rkskekfkakqktkdkwkckxkvkgkdlglgldbwldnqkqhdbbwldxmdnlcldngkgkrmfkrktmdgusgmlgmlfjdjfpfdmksdjndsionfdjkojnlkjnffdakjlgakrjlnknk}"
+  access-expiration: 1800000
+  refresh-expiration: 604800000
+
+
+spring:
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+
+    url: jdbc:mysql://127.0.0.1:3306/studiz?serverTimezone=Asia/Seoul&characterEncoding=UTF-8&createDatabaseIfNotExist=true
+
+
+    username: root
+
+
+    password: 1234
+
+  jpa:
+    database: mysql
+    database-platform: org.hibernate.dialect.MySQLDialect
+    show-sql: true
+    hibernate:
+      ddl-auto: create
