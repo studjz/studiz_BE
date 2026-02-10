@@ -37,4 +37,12 @@ public class User {
         this.role = (role!=null)? role: Role.USER;
     }
 
+    @Column(nullable = false, name = "correct-rate")
+    private Long correctRate;
+
+    @Column(nullable = false, name="progress-rate")
+    private Long progressRate;
+
+
+
 }
