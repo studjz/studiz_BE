@@ -17,7 +17,7 @@ public class User {
     private Long id;
 
     @Column(unique = true,  nullable = false, name = "school_id")
-    private String schoolId;
+    private Long schoolId;
 
     @Column(nullable = false, length = 16, name = "user_name")
     private String username;
@@ -30,7 +30,7 @@ public class User {
     private Role role;
 
     @Builder
-    public User(String schoolId, String username, String password, Role role) {
+    public User(Long schoolId, String username, String password, Role role) {
         this.schoolId = schoolId;
         this.username = username;
         this.password = password;

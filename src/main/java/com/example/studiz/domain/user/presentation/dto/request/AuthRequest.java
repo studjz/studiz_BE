@@ -6,7 +6,7 @@ import lombok.NoArgsConstructor;
 @Getter
 @NoArgsConstructor
 public class AuthRequest {
-    private String schoolId;
+    private Long schoolId;
     private String username;
     private String password;
 }

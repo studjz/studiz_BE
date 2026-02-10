@@ -27,9 +27,9 @@ public class LoginService {
             throw new IllegalArgumentException("아이디나 비번이 틀렸습니다.");
         }
 
-        String accessToken = jwtProvider.createAccessToken(user.getSchoolId(), user.getRole());
-        String refreshToken = jwtProvider.createRefreshToken(user.getSchoolId());
-        // 일반 객체를 그대로 반환합니다.
+        String accessToken = jwtProvider.createAccessToken(user.getId() ,user.getRole());
+
+        String refreshToken = jwtProvider.createRefreshToken(String.valueOf(user.getId()));
         return new TokenResponse(accessToken,refreshToken);
     }
 }

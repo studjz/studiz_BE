@@ -33,9 +33,9 @@ public class JwtProvider {
     @PostConstruct
     public void init() {this.key= Keys.hmacShaKeyFor(jwtSecret.getBytes(StandardCharsets.UTF_8));}
 
-    public String createAccessToken(String schoolId, Role role) {
+    public String createAccessToken(Long id, Role role) {
         return Jwts.builder()
-                .setSubject(schoolId)
+                .setSubject(id.toString())
                 .claim("role",role.name())
                 .setIssuedAt(new Date())
                 .setExpiration(new Date(System.currentTimeMillis()+expirationTime))
@@ -52,8 +52,9 @@ public class JwtProvider {
         }
     }
 
-    public String getSubject(String token) {
-        return Jwts.parserBuilder().setSigningKey(key).build().parseClaimsJws(token).getBody().getSubject();
+    public Long getSubject(String token) {
+        return Long.parseLong(Jwts.parserBuilder().setSigningKey(key).build().parseClaimsJws(token).getBody().getSubject());
+
     }
     public String getRole(String token) {
         return Jwts.parserBuilder().build().parseClaimsJws(token).getBody().get("role").toString();

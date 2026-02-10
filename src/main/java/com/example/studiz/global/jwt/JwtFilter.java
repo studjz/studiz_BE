@@ -33,10 +33,10 @@ public class JwtFilter extends OncePerRequestFilter {
         }
 
         if  (token != null && jwtProvider.validateToken(token)) {
-            String username=jwtProvider.getSubject(token);
+            Long schoolId=jwtProvider.getSubject(token);
 
             UsernamePasswordAuthenticationToken authentication =
-                    new UsernamePasswordAuthenticationToken(username, null, List.of(new SimpleGrantedAuthority("ROLE_USER")));
+                    new UsernamePasswordAuthenticationToken(schoolId, null, List.of(new SimpleGrantedAuthority("ROLE_USER")));
 
             SecurityContextHolder.getContext().setAuthentication(authentication);
         }
