@@ -59,6 +59,7 @@ public class JwtProvider {
         return Jwts.parserBuilder().build().parseClaimsJws(token).getBody().get("role").toString();
     }
 
+
     public String createRefreshToken(String schoolId) {
         return Jwts.builder()
                 .setSubject(schoolId)

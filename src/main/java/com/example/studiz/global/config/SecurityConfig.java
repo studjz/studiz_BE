@@ -26,8 +26,8 @@
 
                     // 2. HTTP 요청 권한 설정
                     .authorizeHttpRequests(auth -> auth
-                            .requestMatchers("/auth/**", "/login/**").permitAll() // 로그인, 회원가입 허용
-                            .requestMatchers("/problem/create/**").authenticated() // 문제 생성은 인증 필요
+                            .requestMatchers("/user/auth", "/user/login").permitAll() // 로그인, 회원가입 허용
+                            .requestMatchers("/problem/**", "/user/delete/**", "/user/info").authenticated() // 문제 생성은 인증 필요
                             .anyRequest().authenticated() // 그 외 모든 요청 인증 필요
                     )
 
