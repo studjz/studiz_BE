@@ -1,7 +1,6 @@
 package com.example.studiz.domain.user.presentation.controller;
 
 
-import com.example.studiz.domain.user.repository.UserRepository;
 import com.example.studiz.domain.user.service.UserDeleteService;
 import lombok.AllArgsConstructor;
 import org.springframework.http.HttpStatus;
@@ -15,8 +14,8 @@ public class UserDeleteController {
     private final UserDeleteService userDeleteService;
 
     @DeleteMapping("/delete")
-    public String delete(@RequestHeader("Authorization") String token) {
+    @ResponseStatus(HttpStatus.NO_CONTENT)
+    public void delete(@RequestHeader("Authorization") String token) {
         userDeleteService.delete(token);
-        return "User deleted";
     }
 }
