@@ -1,13 +1,16 @@
-package com.example.studiz.domain.problem.presentation;
+package com.example.studiz.domain.problem.presentation.controller;
 
 import com.example.studiz.domain.problem.Problem;
 import com.example.studiz.domain.problem.presentation.dto.request.AnswerRequest;
 import com.example.studiz.domain.problem.presentation.dto.request.CreateProblemRequset;
 import com.example.studiz.domain.problem.service.ProblemService;
+import com.example.studiz.domain.user.User;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
@@ -17,7 +20,9 @@ import org.springframework.web.bind.annotation.*;
 @RequestMapping("/problem")
 public class ProblemController {
 
-    private ProblemService problemService;
+    private final ProblemService problemService;
+
+
 
     @PostMapping("/create")
     public ResponseEntity<Problem> create(@RequestBody CreateProblemRequset createProblemRequset) {
@@ -30,15 +35,19 @@ public class ProblemController {
     return ResponseEntity.ok(problem);
     }
     @PostMapping("/solve/{id}/check")
-    public ResponseEntity<String> solve(@PathVariable("id") Long id,
-                                         @RequestBody AnswerRequest answerRequest) {
-        boolean iscorrect = problemService.checkAnswer(id, answerRequest.getUseranswer());
+    public ResponseEntity<String> solve(
+            @PathVariable("id") Long id,
+            @RequestBody AnswerRequest answerRequest,
+            @RequestHeader("Authorization") String token
+    ) {
 
-        if (iscorrect) {
-            return ResponseEntity.ok().body("정답입니다");
+        boolean isCorrect =problemService.checkAnswer(token, id,answerRequest.getUseranswer());
+
+        if (isCorrect){
+            return ResponseEntity.ok("Correct");
         }
-        else {
-            return  ResponseEntity.ok("틀렸습니다");
+        else  {
+            return ResponseEntity.ok("Wrong");
         }
     }
 

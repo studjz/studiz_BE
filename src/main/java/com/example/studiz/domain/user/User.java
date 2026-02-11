@@ -44,5 +44,9 @@ public class User {
     private double progressRate;
 
 
+    public void updateStatus(double correctRate, double progressRate) {
+        this.correctRate = correctRate;
+        this.progressRate = progressRate;
+    }
 
 }

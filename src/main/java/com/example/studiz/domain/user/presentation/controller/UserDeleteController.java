@@ -18,4 +18,5 @@ public class UserDeleteController {
     public void delete(@RequestHeader("Authorization") String token) {
         userDeleteService.delete(token);
     }
+
 }
