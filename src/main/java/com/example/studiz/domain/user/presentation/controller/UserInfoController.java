@@ -1,7 +1,7 @@
 package com.example.studiz.domain.user.presentation.controller;
 
 import com.example.studiz.domain.user.User;
-import com.example.studiz.domain.user.repository.UserRepository;
+import com.example.studiz.domain.user.presentation.dto.response.UserInfoResponse;
 import com.example.studiz.domain.user.service.UserInfoService;
 import lombok.AllArgsConstructor;
 import org.springframework.http.ResponseEntity;

@@ -43,10 +43,20 @@ public class User {
     @Column(nullable = true, name="progress-rate")
     private double progressRate;
 
+    @Column(name="user-major")
+    private String userMajor;
+
 
     public void updateStatus(double correctRate, double progressRate) {
         this.correctRate = correctRate;
         this.progressRate = progressRate;
     }
 
+    public void updateUsername(String newUsername) {
+        this.username = newUsername;
+    }
+
+    public void updateMajor(String newMajor) {
+        this.userMajor = newMajor;
+    }
 }

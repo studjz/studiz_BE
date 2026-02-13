@@ -8,7 +8,7 @@ import com.example.studiz.domain.user.repository.UserRepository;
 import com.example.studiz.domain.userproblem.UserProblem;
 import com.example.studiz.domain.userproblem.repository.UserProblemRepository;
 import com.example.studiz.global.jwt.JwtProvider;
-import org.springframework.transaction.annotation.Transactional; // 이걸로 바꿔주세요!
+import org.springframework.transaction.annotation.Transactional;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
@@ -43,7 +43,7 @@ public class ProblemService {
                 .orElseThrow(() -> new IllegalArgumentException("문제를 찾을수 없습니다"));
     }
 
-    @Transactional(readOnly = false)
+    @Transactional
     public boolean checkAnswer(String token, Long  problemId ,String userAnswer) {
         String authHeader = token;
         if (authHeader != null && authHeader.startsWith("Bearer ")) {

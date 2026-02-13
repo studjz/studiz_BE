@@ -1,5 +1,6 @@
 package com.example.studiz.domain.user.service;
 
+
 import com.example.studiz.domain.user.User;
 import com.example.studiz.domain.user.repository.UserRepository;
 import com.example.studiz.global.jwt.JwtProvider;
@@ -12,21 +13,24 @@ import java.util.NoSuchElementException;
 @Service
 @RequiredArgsConstructor
 @Transactional
-public class UserInfoService {
-
+public class SelectUserMajorService {
     private final UserRepository userRepository;
     private final JwtProvider jwtProvider;
 
-    public User userInfo(String token) {
+    public User seleteUserMajor(String token, String major) {
         String authHeader = token;
         if (authHeader != null && authHeader.startsWith("Bearer ")) {
             authHeader = authHeader.substring(7);
         }
 
-
         Long id = jwtProvider.getSubject(authHeader);
 
-        return userRepository.findById(id)
-                .orElseThrow(() -> new NoSuchElementException("해당 ID(" + id + ")를 가진 사용자가 존재하지 않습니다."));
+        User user = userRepository.findById(id)
+                .orElseThrow(()->  new NoSuchElementException("해당유저를 못찾는다"));
+
+        user.updateMajor(major);
+        return userRepository.save(user);
+
     }
+
 }
