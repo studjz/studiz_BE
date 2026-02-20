@@ -37,19 +37,19 @@ public class User {
         this.role = (role!=null)? role: Role.USER;
     }
 
+    @Column(nullable = true, name="progress-rate")
+    private double progressRate;
+
     @Column(nullable = true, name = "correct-rate")
     private double correctRate;
 
-    @Column(nullable = true, name="progress-rate")
-    private double progressRate;
 
     @Column(name="user-major")
     private String userMajor;
 
-
-    public void updateStatus(double correctRate, double progressRate) {
-        this.correctRate = correctRate;
+    public void updateStatus(double progressRate, double correctRate) {
         this.progressRate = progressRate;
+        this.correctRate = correctRate;
     }
 
     public void updateUsername(String newUsername) {

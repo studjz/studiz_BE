@@ -1,6 +1,5 @@
 package com.example.studiz.domain.user.service;
 
-
 import com.example.studiz.domain.user.User;
 import com.example.studiz.domain.user.repository.UserRepository;
 import com.example.studiz.global.jwt.JwtProvider;
@@ -32,5 +31,4 @@ public class UsernameChangeService {
 
         return userRepository.save(user);
     }
-
 }

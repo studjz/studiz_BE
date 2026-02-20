@@ -36,4 +36,8 @@ public class UserProblem {
     public void updateResult(boolean isCorrect) {
         this.isCorrect = isCorrect;
     }
+
+    public void markAsCorrect() {
+        this.isCorrect = true;
+    }
 }
