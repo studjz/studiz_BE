@@ -19,7 +19,7 @@ public class AuthService {
     public User createUser(AuthRequest authRequest) {
         String username = authRequest.getUsername();
         if(userRepository.existsUserByUsername(username)){
-            throw new IllegalArgumentException("Username already exists");
+            throw new IllegalArgumentException("이미 존재하는 이름 입니다.");
         }
         User user = User.builder()
                 .username(username)
