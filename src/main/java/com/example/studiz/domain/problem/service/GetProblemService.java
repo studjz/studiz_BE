@@ -4,6 +4,8 @@ import com.example.studiz.domain.problem.Problem;
 import com.example.studiz.domain.problem.repository.ProblemRepository;
 import com.example.studiz.domain.user.repository.UserRepository;
 import com.example.studiz.domain.userproblem.repository.UserProblemRepository;
+import com.example.studiz.global.error.exception.CustomException;
+import com.example.studiz.global.error.exception.ErrorCode;
 import com.example.studiz.global.jwt.JwtProvider;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -19,6 +21,6 @@ public class GetProblemService {
 
     public Problem getProblemById(Long id) {
         return problemRepository.findById(id)
-                .orElseThrow(() -> new IllegalArgumentException("문제를 찾을수 없습니다"));
+                .orElseThrow(() -> new CustomException(ErrorCode.PROBLEM_NOT_FOUND));
     }
 }

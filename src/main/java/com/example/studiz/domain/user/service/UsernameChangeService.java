@@ -2,6 +2,8 @@ package com.example.studiz.domain.user.service;
 
 import com.example.studiz.domain.user.User;
 import com.example.studiz.domain.user.repository.UserRepository;
+import com.example.studiz.global.error.exception.CustomException;
+import com.example.studiz.global.error.exception.ErrorCode;
 import com.example.studiz.global.jwt.JwtProvider;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -25,7 +27,7 @@ public class UsernameChangeService {
             Long id = jwtProvider.getSubject(authHeader);
 
         User user = userRepository.findById(id)
-                .orElseThrow(()->  new NoSuchElementException("해당유저를 못찾는다"));
+                .orElseThrow(()->  new CustomException(ErrorCode.User_Not_Found));
 
         user.updateUsername(username);
 

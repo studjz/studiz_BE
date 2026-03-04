@@ -7,6 +7,8 @@ import com.example.studiz.domain.user.User;
 import com.example.studiz.domain.user.repository.UserRepository;
 import com.example.studiz.domain.userproblem.UserProblem;
 import com.example.studiz.domain.userproblem.repository.UserProblemRepository;
+import com.example.studiz.global.error.exception.CustomException;
+import com.example.studiz.global.error.exception.ErrorCode;
 import com.example.studiz.global.jwt.JwtProvider;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -35,7 +37,7 @@ public class GetWrongProblemService {
         Long id = jwtProvider.getSubject(authHeader);
 
         User user = userRepository.findById(id)
-                .orElseThrow(() -> new IllegalArgumentException("사용자를 찾을 수 없습니다."));
+                .orElseThrow(() -> new CustomException(ErrorCode.User_Not_Found));
 
         List<UserProblem> wrongHistories = userProblemRepository.findAllByUserAndIsCorrectFalse(user);
 

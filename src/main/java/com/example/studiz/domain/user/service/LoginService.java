@@ -1,5 +1,7 @@
 package com.example.studiz.domain.user.service;
 
+import com.example.studiz.global.error.exception.CustomException;
+import com.example.studiz.global.error.exception.ErrorCode;
 import com.example.studiz.global.jwt.JwtProvider;
 import com.example.studiz.domain.user.User;
 import com.example.studiz.domain.user.repository.UserRepository;
@@ -21,10 +23,10 @@ public class LoginService {
     public TokenResponse login(String username, String password) {
 
         User user = userRepository.findByUsername(username)
-                .orElseThrow(() -> new IllegalArgumentException("아이디나 비번이 틀렸습니다."));
+                .orElseThrow(() -> new CustomException(ErrorCode.Wrong_Id_Password));
 
         if(!passwordEncoder.matches(password, user.getPassword())){
-            throw new IllegalArgumentException("아이디나 비번이 틀렸습니다.");
+            throw new CustomException(ErrorCode.Wrong_Id_Password);
         }
 
         String accessToken = jwtProvider.createAccessToken(user.getId() ,user.getRole());

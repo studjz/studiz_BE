@@ -4,6 +4,8 @@ import com.example.studiz.domain.user.Role;
 import com.example.studiz.domain.user.User;
 import com.example.studiz.domain.user.presentation.dto.request.AuthRequest;
 import com.example.studiz.domain.user.repository.UserRepository;
+import com.example.studiz.global.error.exception.CustomException;
+import com.example.studiz.global.error.exception.ErrorCode;
 import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
@@ -16,10 +18,11 @@ public class AuthService {
     private final UserRepository userRepository;
     private final BCryptPasswordEncoder passwordEncoder;
 
+
     public User createUser(AuthRequest authRequest) {
         String username = authRequest.getUsername();
         if(userRepository.existsUserByUsername(username)){
-            throw new IllegalArgumentException("이미 존재하는 이름 입니다.");
+            throw new CustomException(ErrorCode.Duplication_School_Id);
         }
         User user = User.builder()
                 .username(username)
