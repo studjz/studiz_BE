@@ -9,7 +9,6 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import java.util.NoSuchElementException;
 
 @Service
 @RequiredArgsConstructor
@@ -19,12 +18,9 @@ public class UsernameChangeService {
     private final JwtProvider jwtProvider;
 
     public User changeUsername(String token,String username) {
-            String authHeader = token;
-            if (authHeader != null && authHeader.startsWith("Bearer ")) {
-                authHeader = authHeader.substring(7);
-            }
+        String authHeader = jwtProvider.getTokenFromHeader(token);
 
-            Long id = jwtProvider.getSubject(authHeader);
+        Long id = jwtProvider.getSubject(authHeader);
 
         User user = userRepository.findById(id)
                 .orElseThrow(()->  new CustomException(ErrorCode.User_Not_Found));

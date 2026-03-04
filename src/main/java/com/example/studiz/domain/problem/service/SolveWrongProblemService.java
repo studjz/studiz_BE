@@ -2,7 +2,6 @@ package com.example.studiz.domain.problem.service;
 
 import com.example.studiz.domain.problem.Problem;
 import com.example.studiz.domain.problem.presentation.dto.request.RetryAnswerRequest;
-import com.example.studiz.domain.problem.repository.ProblemRepository;
 import com.example.studiz.domain.user.User;
 import com.example.studiz.domain.user.repository.UserRepository;
 import com.example.studiz.domain.userproblem.UserProblem;
@@ -18,7 +17,6 @@ import org.springframework.stereotype.Service;
 @RequiredArgsConstructor
 @Transactional
 public class SolveWrongProblemService {
-    private final ProblemRepository problemRepository;
     private final UserRepository userRepository;
     private final UserProblemRepository userProblemRepository;
     private final JwtProvider jwtProvider;
@@ -26,10 +24,7 @@ public class SolveWrongProblemService {
 
     @Transactional
     public boolean solveAllWrongProblems(String token, RetryAnswerRequest retryAnswerRequest) {
-        String authHeader = token;
-        if (authHeader != null && authHeader.startsWith("Bearer ")) {
-            authHeader = authHeader.substring(7);
-        }
+        String authHeader = jwtProvider.getTokenFromHeader(token);
 
         Long id = jwtProvider.getSubject(authHeader);
 

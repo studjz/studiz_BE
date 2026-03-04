@@ -26,10 +26,7 @@ public class SolveProblemService {
 
     @Transactional
     public boolean checkAnswer(String token, Long  problemId ,String userAnswer) {
-        String authHeader = token;
-        if (authHeader != null && authHeader.startsWith("Bearer ")) {
-            authHeader = authHeader.substring(7);
-        }
+        String authHeader = jwtProvider.getTokenFromHeader(token);
 
 
         Long id = jwtProvider.getSubject(authHeader);

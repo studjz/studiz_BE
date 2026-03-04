@@ -52,6 +52,14 @@ public class JwtProvider {
         }
     }
 
+    public String getTokenFromHeader(String header) {
+        String token = header;
+        if (header != null && header.startsWith("Bearer ")) {
+            header = header.substring(7);
+        }
+        return token;
+    }
+
     public Long getSubject(String token) {
         return Long.parseLong(Jwts.parserBuilder().setSigningKey(key).build().parseClaimsJws(token).getBody().getSubject());
 

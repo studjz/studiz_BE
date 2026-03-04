@@ -15,10 +15,7 @@ public class UserDeleteService {
     private final JwtProvider jwtProvider;
 
     public void delete(String token) {
-        String authHeader = token;
-        if (authHeader != null && authHeader.startsWith("Bearer ")) {
-            authHeader = authHeader.substring(7);
-        }
+        String authHeader = jwtProvider.getTokenFromHeader(token);
 
 
         Long id = jwtProvider.getSubject(authHeader);

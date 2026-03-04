@@ -19,7 +19,6 @@ public class LoginService {
     private final PasswordEncoder passwordEncoder;
     private final JwtProvider jwtProvider;
 
-    // 반환 타입을 ResponseEntity가 아닌 순수 TokenResponse로 변경합니다.
     public TokenResponse login(String username, String password) {
 
         User user = userRepository.findByUsername(username)
