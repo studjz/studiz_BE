@@ -15,7 +15,7 @@ import java.util.Date;
 
 @Component
 public class JwtProvider {
-    private String jwtSecret;
+    private final String jwtSecret;
     private final Long expirationTime;
     private final Long refreshTokenExpiration;
     private Key key;
@@ -55,7 +55,7 @@ public class JwtProvider {
     public String getTokenFromHeader(String header) {
         String token = header;
         if (header != null && header.startsWith("Bearer ")) {
-            header = header.substring(7);
+            token = header.substring(7);
         }
         return token;
     }
@@ -64,10 +64,6 @@ public class JwtProvider {
         return Long.parseLong(Jwts.parserBuilder().setSigningKey(key).build().parseClaimsJws(token).getBody().getSubject());
 
     }
-    public String getRole(String token) {
-        return Jwts.parserBuilder().build().parseClaimsJws(token).getBody().get("role").toString();
-    }
-
 
     public String createRefreshToken(String schoolId) {
         return Jwts.builder()

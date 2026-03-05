@@ -22,8 +22,9 @@ public class CreateProblemController {
     private final CreateProblemService createProblemService;
 
     @PostMapping("/create")
-    public ResponseEntity<Problem> create(@RequestBody CreateProblemRequset createProblemRequset) {
-        return createProblemService.addProblem(createProblemRequset);
+    public ResponseEntity<String> create(@RequestBody CreateProblemRequset createProblemRequset) {
+        createProblemService.addProblem(createProblemRequset);
+        return ResponseEntity.ok().body("문제가 생성되었습니다.");
     }
 
 }

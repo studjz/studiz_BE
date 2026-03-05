@@ -1,9 +1,7 @@
 package com.example.studiz.domain.problem.presentation.controller;
 
-import com.example.studiz.domain.problem.Problem;
 import com.example.studiz.domain.problem.presentation.dto.request.AnswerRequest;
 import com.example.studiz.domain.problem.service.SolveProblemService;
-import com.example.studiz.domain.problem.service.SolveWrongProblemService;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;

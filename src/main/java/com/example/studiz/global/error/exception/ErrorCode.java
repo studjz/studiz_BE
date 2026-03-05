@@ -21,6 +21,9 @@ public enum ErrorCode {
     PROBLEM_NOT_FOUND(404,"문제를 찾지 못하였습니다."),
     No_Problem_Record(404,"해당 믄제에 대한 기록이 없습니다."),
 
+    //token
+    No_Access_Token(401,"인증 토큰이 없습니다."),
+
     //major
     Not_Selet_Major(400, "전공은 1개 선택해야 합니다."),
 

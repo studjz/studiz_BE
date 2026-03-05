@@ -1,4 +1,4 @@
-package com.example.studiz.domain.user.service;
+package com.example.studiz.domain.main.service;
 
 import com.example.studiz.domain.user.User;
 import com.example.studiz.domain.user.repository.UserRepository;
