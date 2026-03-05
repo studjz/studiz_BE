@@ -1,8 +1,8 @@
-package com.example.studiz.domain.user.presentation.controller;
+package com.example.studiz.domain.main.controller;
 
+import com.example.studiz.domain.main.service.SelectUserMajorService;
 import com.example.studiz.domain.user.User;
 import com.example.studiz.domain.user.presentation.dto.request.UserMajorRequest;
-import com.example.studiz.domain.user.service.SelectUserMajorService;
 import lombok.AllArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
