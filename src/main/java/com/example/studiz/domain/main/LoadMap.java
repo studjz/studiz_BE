@@ -1,8 +1,14 @@
 package com.example.studiz.domain.main;
 
-import com.example.studiz.domain.problem.Problem;
 import jakarta.persistence.*;
+import lombok.Builder;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
 
+
+@Getter
+@NoArgsConstructor
+@Entity
 @Table(name = "tbl_LoadMap")
 public class LoadMap
 {
@@ -16,9 +22,18 @@ public class LoadMap
     @Column(name = "map_text", nullable = false)
     private String mapText;
 
-    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
-    private Problem problem;
+    @Column(name = "map_link")
+    private String link;
+
+    @Column(name = "map_major")
+    private String major;
 
 
-
+    @Builder
+    public  LoadMap( String mapSubject, String mapText,String major,String link) {
+        this.mapSubject = mapSubject;
+        this.mapText = mapText;
+        this.major= major;
+        this.link = link;
+    }
 }

@@ -1,7 +1,6 @@
 package com.example.studiz.domain.user;
 
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -46,6 +45,8 @@ public class User {
 
     @Column(name="user-major")
     private String userMajor;
+
+
 
     public void updateStatus(double progressRate, double correctRate) {
         this.progressRate = progressRate;
