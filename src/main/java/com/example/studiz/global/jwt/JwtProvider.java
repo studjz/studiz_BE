@@ -2,6 +2,7 @@ package com.example.studiz.global.jwt;
 
 
 import com.example.studiz.domain.user.Role;
+import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;
 import jakarta.annotation.PostConstruct;
@@ -33,9 +34,10 @@ public class JwtProvider {
     @PostConstruct
     public void init() {this.key= Keys.hmacShaKeyFor(jwtSecret.getBytes(StandardCharsets.UTF_8));}
 
-    public String createAccessToken(Long id, Role role) {
+    public String createAccessToken(Long id, Role role, String major) {
         return Jwts.builder()
                 .setSubject(id.toString())
+                .claim("major",major)
                 .claim("role",role.name())
                 .setIssuedAt(new Date())
                 .setExpiration(new Date(System.currentTimeMillis()+expirationTime))
@@ -52,6 +54,7 @@ public class JwtProvider {
         }
     }
 
+
     public String getTokenFromHeader(String header) {
         String token = header;
         if (header != null && header.startsWith("Bearer ")) {
@@ -63,6 +66,15 @@ public class JwtProvider {
     public Long getSubject(String token) {
         return Long.parseLong(Jwts.parserBuilder().setSigningKey(key).build().parseClaimsJws(token).getBody().getSubject());
 
+    }
+    public String getMajorFromToken(String token) {
+        Claims claims = Jwts.parserBuilder()
+                .setSigningKey(key)      // 내 서버의 키로 서명 확인
+                .build()
+                .parseClaimsJws(token)   // 토큰 해석 시작
+                .getBody();              // 내용물(Payload) 가져오기
+
+        return claims.get("major", String.class); // "major" 키의 값을 String으로 리턴
     }
 
     public String createRefreshToken(String schoolId) {

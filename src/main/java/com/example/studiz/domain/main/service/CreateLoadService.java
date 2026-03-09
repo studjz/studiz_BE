@@ -1,7 +1,7 @@
 package com.example.studiz.domain.main.service;
 
 import com.example.studiz.domain.main.LoadMap;
-import com.example.studiz.domain.main.presentation.dto.MakeLoadRequest;
+import com.example.studiz.domain.main.presentation.dto.request.MakeLoadRequest;
 import com.example.studiz.domain.main.repository.LoadMapRepository;
 import lombok.Builder;
 import lombok.RequiredArgsConstructor;

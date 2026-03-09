@@ -28,7 +28,7 @@ public class LoginService {
             throw new CustomException(ErrorCode.Wrong_Id_Password);
         }
 
-        String accessToken = jwtProvider.createAccessToken(user.getId() ,user.getRole());
+        String accessToken = jwtProvider.createAccessToken(user.getId() ,user.getRole(),user.getUserMajor());
 
         String refreshToken = jwtProvider.createRefreshToken(String.valueOf(user.getId()));
         return new TokenResponse(accessToken,refreshToken);

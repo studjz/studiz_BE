@@ -29,6 +29,7 @@ public class AuthService {
                 .schoolId(authRequest.getSchoolId())
                 .password(passwordEncoder.encode(authRequest.getPassword()))
                 .role(Role.USER)
+                .major(authRequest.getMajor())
                 .build();
 
         userRepository.save(user);

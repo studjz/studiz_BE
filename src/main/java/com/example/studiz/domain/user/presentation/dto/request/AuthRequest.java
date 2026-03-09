@@ -9,4 +9,5 @@ public class AuthRequest {
     private Long schoolId;
     private String username;
     private String password;
+    private String major;
 }

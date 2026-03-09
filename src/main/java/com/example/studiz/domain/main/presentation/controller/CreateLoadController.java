@@ -1,8 +1,7 @@
 package com.example.studiz.domain.main.presentation.controller;
 
 import com.example.studiz.domain.main.LoadMap;
-import com.example.studiz.domain.main.presentation.dto.MakeLoadRequest;
-import com.example.studiz.domain.main.repository.LoadMapRepository;
+import com.example.studiz.domain.main.presentation.dto.request.MakeLoadRequest;
 import com.example.studiz.domain.main.service.CreateLoadService;
 import jakarta.validation.Valid;
 import lombok.AllArgsConstructor;

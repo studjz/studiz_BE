@@ -10,5 +10,6 @@ import java.util.Optional;
 public interface LoadMapRepository extends JpaRepository<LoadMap, Integer> {
 
 
+    List<LoadMap> findAllByMajor(String major);
     Optional<LoadMap> findByUser(User user);
 }

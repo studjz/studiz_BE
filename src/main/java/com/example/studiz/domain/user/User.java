@@ -29,11 +29,12 @@ public class User {
     private Role role;
 
     @Builder
-    public User(Long schoolId, String username, String password, Role role) {
+    public User(Long schoolId, String username, String password, Role role, String major) {
         this.schoolId = schoolId;
         this.username = username;
         this.password = password;
         this.role = (role!=null)? role: Role.USER;
+        this.userMajor = major;
     }
 
     @Column(nullable = true, name="progress-rate")

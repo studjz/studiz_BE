@@ -1,4 +1,4 @@
-package com.example.studiz.domain.main.presentation.dto;
+package com.example.studiz.domain.main.presentation.dto.request;
 
 import lombok.Getter;
 import lombok.NoArgsConstructor;
