@@ -8,12 +8,11 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
-import java.util.Optional;
 
 @Service
 @RequiredArgsConstructor
 @Transactional
-public class GetLoadService {
+public class GetAllLoadService {
 
     private final LoadMapRepository loadMapRepository;
     private final JwtProvider jwtProvider;

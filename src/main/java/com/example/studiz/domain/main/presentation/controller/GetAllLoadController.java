@@ -1,7 +1,7 @@
 package com.example.studiz.domain.main.presentation.controller;
 
 import com.example.studiz.domain.main.LoadMap;
-import com.example.studiz.domain.main.service.GetLoadService;
+import com.example.studiz.domain.main.service.GetAllLoadService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -14,12 +14,12 @@ import java.util.List;
 @RestController
 @RequiredArgsConstructor
 @RequestMapping("/main")
-public class GetLoadController {
-    private final GetLoadService getLoadService;
+public class GetAllLoadController {
+    private final GetAllLoadService getAllLoadService;
 
     @GetMapping("/loadmap")
     public ResponseEntity<List<LoadMap>> getLoadMap(String token) {
-        List<LoadMap> loadMap = getLoadService.getLoadMap(token);
+        List<LoadMap> loadMap = getAllLoadService.getLoadMap(token);
         return ResponseEntity.ok().body(loadMap);
     }
 }

@@ -6,7 +6,8 @@ import lombok.Getter;
 
 @Getter
 @AllArgsConstructor
-public class GetLoadResponse {
+public class GetMainLoadResponse {
     private String mapSubject;
     private String mapText;
+    private String link;
 }

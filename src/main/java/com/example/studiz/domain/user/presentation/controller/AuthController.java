@@ -7,11 +7,10 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.*;
 import jakarta.validation.Valid;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+
+import java.util.List;
 
 @RestController
 @Getter
@@ -20,6 +19,12 @@ import org.springframework.web.bind.annotation.RestController;
 @RequestMapping("/user")
 public class AuthController {
     private final AuthService authService;
+
+    @GetMapping("/majors")
+    public ResponseEntity<List<String>> getMajors() {
+        List<String> majors = authService.getMajorList();
+        return ResponseEntity.ok(majors);
+    }
 
     @PostMapping("/auth")
     public ResponseEntity<User> auth(@RequestBody @Valid AuthRequest authRequest) {
