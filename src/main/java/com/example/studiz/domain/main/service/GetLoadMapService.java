@@ -11,9 +11,10 @@ public class GetLoadMapService {
 
     public LoadMap GetLoadMapService(Long id) {
 
-        return loadMapRepository.findById(id)
-                .orElseThrow(()=> new )
+     LoadMap loadMap = loadMapRepository.findById(id)
+                .orElseThrow(()-> new IllegalArgumentException("해당 로드맵을 찾을수 없습니다."));
 
+     return loadMap;
     }
 
 }
