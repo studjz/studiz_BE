@@ -17,7 +17,7 @@ import java.util.List;
 public class GetAllLoadController {
     private final GetAllLoadService getAllLoadService;
 
-    @GetMapping("/loadmap")
+    @GetMapping("/allloadmap")
     public ResponseEntity<List<LoadMap>> getLoadMap(String token) {
         List<LoadMap> loadMap = getAllLoadService.getLoadMap(token);
         return ResponseEntity.ok().body(loadMap);

@@ -2,12 +2,13 @@ package com.example.studiz.domain.main.service;
 
 import com.example.studiz.domain.main.LoadMap;
 import com.example.studiz.domain.main.repository.LoadMapRepository;
-import org.springframework.http.ResponseEntity;
+import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
 @Service
+@RequiredArgsConstructor
 public class GetLoadMapService {
-    private LoadMapRepository loadMapRepository;
+    private final LoadMapRepository loadMapRepository;
 
     public LoadMap GetLoadMapService(Long id) {
 

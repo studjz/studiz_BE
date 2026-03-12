@@ -17,7 +17,7 @@ public class GetLoadMapController {
     private final GetLoadMapService getLoadMapService;
 
     @GetMapping("/loadmap/{id}")
-    public ResponseEntity<LoadMap> GetLoadMap(@PathVariable("id") Long id){
+    public ResponseEntity<LoadMap> GetLoadMap(@PathVariable Long id){
     LoadMap loadMap = getLoadMapService.GetLoadMapService(id);
     return ResponseEntity.ok(loadMap);
     }

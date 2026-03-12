@@ -37,10 +37,10 @@ public class User {
         this.userMajor = major;
     }
 
-    @Column(nullable = true, name="progress-rate")
+    @Column( name="progress-rate")
     private double progressRate;
 
-    @Column(nullable = true, name = "correct-rate")
+    @Column( name = "correct-rate")
     private double correctRate;
 
 
@@ -58,7 +58,4 @@ public class User {
         this.username = newUsername;
     }
 
-    public void updateMajor(String newMajor) {
-        this.userMajor = newMajor;
-    }
 }
