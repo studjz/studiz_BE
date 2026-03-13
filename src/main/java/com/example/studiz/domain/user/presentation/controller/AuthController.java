@@ -3,6 +3,7 @@ package com.example.studiz.domain.user.presentation.controller;
 import com.example.studiz.domain.user.User;
 import com.example.studiz.domain.user.presentation.dto.request.AuthRequest;
 import com.example.studiz.domain.user.service.AuthService;
+import com.example.studiz.global.jwt.dto.response.TokenResponse;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
@@ -31,4 +32,16 @@ public class AuthController {
         User user= authService.createUser(authRequest);
         return ResponseEntity.ok().body(user);
     }
+    @PostMapping("/reissue")
+    public ResponseEntity<TokenResponse> reissue(
+            @RequestHeader("Authorization-Refresh") String refreshToken
+    ) {
+        // "Bearer " 접두사가 붙어올 경우를 대비해 잘라줍니다.
+        String token = refreshToken.startsWith("Bearer ") ? refreshToken.substring(7) : refreshToken;
+
+        TokenResponse response = authService.reissue(token);
+        return ResponseEntity.ok(response);
+    }
+
+
 }

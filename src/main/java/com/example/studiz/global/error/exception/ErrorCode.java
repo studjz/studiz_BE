@@ -25,13 +25,13 @@ public enum ErrorCode {
     No_Access_Token(401,"인증 토큰이 없습니다."),
 
     //major
-    Not_Selet_Major(400, "전공은 1개 선택해야 합니다."),
+    Not_Select_Major(400, "전공은 1개 선택해야 합니다."),
 
     //answer
     Blink_Answer(400, "공백을 제출할수 없습니다,");
 
 
-    private int status;
-    private String message;
+    private final int status;
+    private final String message;
 
 }

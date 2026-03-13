@@ -7,12 +7,14 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
+import org.springframework.data.redis.core.RedisHash;
 
 @Builder
 @Getter
 @NoArgsConstructor
 @AllArgsConstructor
 @Entity
+@RedisHash(value = "refreshToken", timeToLive = 604800)
 
 public class RefreshToken {
 
@@ -25,8 +27,15 @@ public class RefreshToken {
     private User user;
 
     @Column(nullable = false)
-    private String token;
+    private String refreshToken;
 
+    public RefreshToken(User user, String refreshToken) {
+        this.user = user;
+        this.refreshToken = refreshToken;
+    }
+    public void updateToken(String newToken) {
+        this.refreshToken = newToken;
+    }
 
 
 

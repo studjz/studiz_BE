@@ -10,7 +10,7 @@ import org.springframework.stereotype.Service;
 public class GetLoadMapService {
     private final LoadMapRepository loadMapRepository;
 
-    public LoadMap GetLoadMapService(Long id) {
+    public LoadMap getLoadMap(Long id) {
 
      LoadMap loadMap = loadMapRepository.findById(id)
                 .orElseThrow(()-> new IllegalArgumentException("해당 로드맵을 찾을수 없습니다."));
