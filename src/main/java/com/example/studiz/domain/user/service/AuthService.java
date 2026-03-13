@@ -52,7 +52,7 @@ public class AuthService {
         userRepository.save(user);
         return user;
     }
-성
+
 
     @Transactional
     public TokenResponse reissue(String refreshToken) {
