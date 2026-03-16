@@ -36,13 +36,12 @@ public class SolveWrongProblemService {
 
 
         Problem problem = userProblem.getProblem();
-        boolean isAnswerCorrect = problem.getCorrectAnswer().equals(retryAnswerRequest.getUserAnswer());
 
+        boolean isAnswerCorrect = problem.getCorrectAnswer().equals(retryAnswerRequest.getUserAnswer());
 
 
         if (isAnswerCorrect) {
             userProblem.markAsCorrect();
-
         }
         return isAnswerCorrect;
     }

@@ -5,6 +5,7 @@ import com.example.studiz.domain.main.service.GetAllLoadService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestHeader;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -18,7 +19,7 @@ public class GetAllLoadController {
     private final GetAllLoadService getAllLoadService;
 
     @GetMapping("/allloadmap")
-    public ResponseEntity<List<LoadMap>> getLoadMap(String token) {
+    public ResponseEntity<List<LoadMap>> getLoadMap(@RequestHeader("Authorization") String token) {
         List<LoadMap> loadMap = getAllLoadService.getLoadMap(token);
         return ResponseEntity.ok().body(loadMap);
     }
