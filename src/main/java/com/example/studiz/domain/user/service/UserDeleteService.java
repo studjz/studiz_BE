@@ -8,8 +8,8 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 @Service
-@RequiredArgsConstructor
-@Transactional
+    @RequiredArgsConstructor
+    @Transactional
 public class UserDeleteService {
     private final UserRepository userRepository;
     private final JwtProvider jwtProvider;

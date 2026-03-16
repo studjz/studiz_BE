@@ -32,14 +32,5 @@ public class AuthController {
         User user= authService.createUser(authRequest);
         return ResponseEntity.ok().body(user);
     }
-    @PostMapping("/reissue")
-    public ResponseEntity<TokenResponse> reissue(
-            @RequestHeader("Authorization-Refresh") String refreshToken
-    ) {
-        // "Bearer " 접두사가 붙어올 경우를 대비해 잘라줍니다.
-        String token = refreshToken.startsWith("Bearer ") ? refreshToken.substring(7) : refreshToken;
 
-        TokenResponse response = authService.reissue(token);
-        return ResponseEntity.ok(response);
-    }
 }
