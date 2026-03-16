@@ -2,7 +2,7 @@ package com.example.studiz.domain.user.service;
 
 import com.example.studiz.global.error.exception.CustomException;
 import com.example.studiz.global.error.exception.ErrorCode;
-import com.example.studiz.global.jwt.JwtProvider;
+import com.example.studiz.global.jwt.*;
 import com.example.studiz.domain.user.User;
 import com.example.studiz.domain.user.repository.UserRepository;
 import com.example.studiz.global.jwt.dto.response.TokenResponse;
@@ -13,11 +13,13 @@ import org.springframework.stereotype.Service;
 
 @Service
 @RequiredArgsConstructor
+
 @Transactional
 public class LoginService {
     private final UserRepository userRepository;
     private final PasswordEncoder passwordEncoder;
     private final JwtProvider jwtProvider;
+    private final RedisRefreshTokenRepository redisRefreshTokenRepository;
 
     public TokenResponse login(String username, String password) {
 
@@ -29,8 +31,16 @@ public class LoginService {
         }
 
         String accessToken = jwtProvider.createAccessToken(user.getId() ,user.getRole(),user.getMajor());
-
         String refreshToken = jwtProvider.createRefreshToken(String.valueOf(user.getId()));
+
+
+        RedisRefreshToken tokenEntity = RedisRefreshToken.builder()
+                .userId(user.getId())
+                .refreshToken(refreshToken)
+                .build();
+        redisRefreshTokenRepository.save(tokenEntity);
+
+
         return new TokenResponse(accessToken,refreshToken);
     }
 }

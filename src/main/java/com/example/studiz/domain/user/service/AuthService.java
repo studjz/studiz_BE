@@ -8,6 +8,7 @@ import com.example.studiz.domain.user.repository.UserRepository;
 import com.example.studiz.global.error.exception.CustomException;
 import com.example.studiz.global.error.exception.ErrorCode;
 import com.example.studiz.global.jwt.JwtProvider;
+import com.example.studiz.global.jwt.RedisRefreshTokenRepository;
 import com.example.studiz.global.jwt.RefreshToken;
 import com.example.studiz.global.jwt.RefreshTokenRepository;
 import com.example.studiz.global.jwt.dto.response.TokenResponse;
@@ -25,7 +26,7 @@ import java.util.stream.Collectors;
 @Transactional
 public class AuthService {
     private final UserRepository userRepository;
-    private final RefreshTokenRepository refreshTokenRepository;
+    private final RedisRefreshTokenRepository redisRefreshTokenRepository;
     private final BCryptPasswordEncoder passwordEncoder;
     private final JwtProvider jwtProvider;
 
