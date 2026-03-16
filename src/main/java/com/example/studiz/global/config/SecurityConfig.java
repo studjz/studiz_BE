@@ -25,7 +25,7 @@
 
 
                     .authorizeHttpRequests(auth -> auth
-                            .requestMatchers("/user/auth", "/user/login","/user/majors").permitAll()
+                            .requestMatchers("/user/auth", "/user/login","/user/majors", "/user/reissue").permitAll()
                             .requestMatchers("/problem/**", "/user/delete/**", "/user/info", "/user/update","/main/major").hasRole("USER")
                             .requestMatchers("/main/**").hasRole("USER")
                             .anyRequest().authenticated()

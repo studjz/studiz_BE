@@ -34,7 +34,7 @@ public class User {
         this.username = username;
         this.password = password;
         this.role = (role!=null)? role: Role.USER;
-        this.userMajor = major;
+        this.major = major;
     }
 
     @Column( name="progress-rate")
@@ -45,7 +45,7 @@ public class User {
 
 
     @Column(name="user-major")
-    private String userMajor;
+    private String major;
 
 
 

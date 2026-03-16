@@ -78,7 +78,7 @@ public class AuthService {
                 .orElseThrow(() -> new RuntimeException("존재하지 않는 사용자입니다."));
 
         // 5. 새로운 토큰 쌍 생성 (RTR 적용)
-        String newAccessToken = jwtProvider.createAccessToken(user.getId(), user.getRole(), user.getUserMajor());
+        String newAccessToken = jwtProvider.createAccessToken(user.getId(), user.getRole(), user.getMajor());
         String newRefreshToken = jwtProvider.createRefreshToken(user.getId().toString());
 
         // 6. Redis 업데이트
